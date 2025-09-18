@@ -6,13 +6,9 @@ import java.io.*;
 import java.util.List;
 
 public class Serializador {
-    private String archivo;
+    private Serializador(){}
 
-    public Serializador(String archivo){
-        this.archivo = archivo;
-    }
-
-    public void serializar(List<Jugador> jugadores) throws RuntimeException{
+    public static void serializar(List<Jugador> jugadores, String archivo) throws RuntimeException{
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))){
             oos.writeObject(jugadores);
 
@@ -21,10 +17,11 @@ public class Serializador {
         }
     }
 
-    public List<Jugador> getJugadores() throws FileNotFoundException, RuntimeException{
+    public static List<Jugador> getJugadores(String archivo) throws FileNotFoundException, RuntimeException{
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))){
             return (List<Jugador>) ois.readObject();
-        } catch (IOException | ClassNotFoundException _){
+        } catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
             throw new RuntimeException("Error al leer el archivo");
         }
     }

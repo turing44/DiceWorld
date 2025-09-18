@@ -1,7 +1,7 @@
 package org.example.diceworld.model.beans;
 
 public class Dado {
-    private Integer numCaras;
+    private final Integer numCaras;
 
     public Dado(Integer numCaras) {
         this.numCaras = numCaras;

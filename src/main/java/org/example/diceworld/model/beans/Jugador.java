@@ -1,18 +1,21 @@
 package org.example.diceworld.model.beans;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Jugador {
+public class Jugador implements Serializable {
     private final String nombre;
     private Integer puntuacion;
     private Integer partidasGanadas;
     private Integer valorUltimaTirada;
 
-    public Jugador(String nombre, Integer puntuacion, Integer partidasGanadas) {
-        this.nombre = nombre;
-        this.puntuacion = puntuacion;
-        this.partidasGanadas = partidasGanadas;
+    public Jugador(String datosCodificados) {
+        String[] datos = datosCodificados.split(":");
+
+        this.nombre = datos[0];
+        this.puntuacion = Integer.parseInt(datos[1]);
+        this.partidasGanadas = Integer.parseInt(datos[2]);
     }
 
     public String getNombre() {

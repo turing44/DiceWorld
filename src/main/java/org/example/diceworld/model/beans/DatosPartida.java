@@ -10,4 +10,16 @@ public class DatosPartida {
         this.numCaras = numCaras;
         this.numDados = numDados;
     }
+
+    public Integer getNumPartidas() {
+        return numPartidas;
+    }
+
+    public Integer getNumCaras() {
+        return numCaras;
+    }
+
+    public Integer getNumDados() {
+        return numDados;
+    }
 }
