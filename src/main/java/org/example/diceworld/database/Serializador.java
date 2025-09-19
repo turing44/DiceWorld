@@ -17,12 +17,11 @@ public class Serializador {
         }
     }
 
-    public static List<Jugador> getJugadores(String archivo) throws FileNotFoundException, RuntimeException{
+    public static List<Jugador> getJugadores(String archivo) throws FileNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))){
             return (List<Jugador>) ois.readObject();
         } catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
-            throw new RuntimeException("Error al leer el archivo");
+            throw new FileNotFoundException("Error al leer el archivo");
         }
     }
 }

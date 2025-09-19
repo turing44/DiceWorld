@@ -14,8 +14,9 @@ public class Jugador implements Serializable {
         String[] datos = datosCodificados.split(":");
 
         this.nombre = datos[0];
-        this.puntuacion = Integer.parseInt(datos[1]);
-        this.partidasGanadas = Integer.parseInt(datos[2]);
+        this.partidasGanadas = Integer.parseInt(datos[1]);
+        this.puntuacion = Integer.parseInt(datos[2]);
+
     }
 
     public String getNombre() {

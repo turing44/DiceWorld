@@ -22,13 +22,14 @@ public class Launcher {
         JuegoDados juegoDados = new JuegoDados();
 
 
+
         try {
             juegoDados.cargarDatos("jugadores.txt");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        juegoDados.jugar(new DatosPartida(2,6,2));
+        juegoDados.jugar(new DatosPartida(1,6,1));
 
         for (Jugador j : juegoDados.jugadores) {
             System.out.println(j);
