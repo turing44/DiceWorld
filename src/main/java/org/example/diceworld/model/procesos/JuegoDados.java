@@ -79,7 +79,7 @@ public class JuegoDados implements Juego {
     private List<Dado> crearDados(Integer numDados, Integer numCaras) {
         List<Dado> dados = new ArrayList<>();
 
-        for (int i = 0; i <= numDados; i++) {
+        for (int i = 0; i < numDados; i++) {
             dados.add(new Dado(numCaras));
         }
 

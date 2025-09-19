@@ -49,18 +49,18 @@ public class Jugador implements Serializable {
     }
 
     public Integer lanzarDados(List<Dado> dados){
-        Integer resultado;
+        // Según el enunciado siempre se jugará con dados iguales
+        int numCaras = dados.getFirst().getNumCaras();
+        int numDados = dados.size();
 
-        // Segun el enunciado siempre se jugara con dados iguales
-        Integer num_caras = dados.getFirst().getNumCaras();
-        Integer num_dados = dados.size();
+        int minimaPuntuacionPosible = numDados; // todos sacan 1
+        int maximaPuntuacionPosible = numDados * numCaras; // todos sacan la cara máxima
 
-        Integer minimaPuntuacionPosible = dados.size();
-        Integer maximaPuntuacionPosible = (int) Math.pow(num_caras, num_dados);
-
-        resultado = ThreadLocalRandom.current().nextInt(minimaPuntuacionPosible, maximaPuntuacionPosible + 1);
+        int resultado = ThreadLocalRandom.current()
+                .nextInt(minimaPuntuacionPosible, maximaPuntuacionPosible + 1);
 
         this.guardarResultadoLanzamiento(resultado);
+        System.out.println(this.nombre + " con "+ dados.size() + numCaras +" = " + resultado);
 
         return resultado;
     }
@@ -68,5 +68,11 @@ public class Jugador implements Serializable {
     private void guardarResultadoLanzamiento(Integer resultado){
         this.setValorUltimaTirada(resultado);
         this.puntuacion += resultado;
+    }
+
+    public void reiniciarPuntuacion() {
+        this.puntuacion = 0;
+        this.partidasGanadas = 0;
+        this.setValorUltimaTirada(0);
     }
 }
