@@ -60,7 +60,6 @@ public class Jugador implements Serializable {
                 .nextInt(minimaPuntuacionPosible, maximaPuntuacionPosible + 1);
 
         this.guardarResultadoLanzamiento(resultado);
-        System.out.println(this.nombre + " con "+ dados.size() + numCaras +" = " + resultado);
 
         return resultado;
     }

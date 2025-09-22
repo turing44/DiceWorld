@@ -14,11 +14,11 @@ import java.util.Scanner;
 
 public class Launcher {
     public static void main(String[] args) {
-        //javafx.application.Application.launch(Application.class, args);
+        javafx.application.Application.launch(Application.class, args);
 
 
 
-
+/*
         JuegoDados juegoDados = new JuegoDados();
 
 
@@ -35,7 +35,7 @@ public class Launcher {
             System.out.println(j);
         }
 
-        juegoDados.guardarDatos("jugadores.txt");
+        juegoDados.guardarDatos("jugadores.txt");*/
 
 
     }
