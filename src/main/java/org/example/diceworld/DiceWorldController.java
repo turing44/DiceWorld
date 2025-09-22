@@ -34,57 +34,98 @@ public class DiceWorldController {
     Button btnSalir;
     @FXML
     Button btnJugar;
-
+    @FXML Button btnGuardarDatos;
 
     Juego juego = new JuegoDados();
 
     @FXML
     public void initialize() {
-        campoNumDados.setText("");
+        areaRankingPartidas.setEditable(false);
+        areaRankingPuntos.setEditable(false);
+
+        desactivarBotonesJuego(true);
     }
 
     @FXML
     public void jugar() {
-        // validar entradas
+        limpiarMensajeYArchivo();
 
-        int numDados = Integer.parseInt(campoNumDados.getText());
-        int numCaras = Integer.parseInt(campoNumCaras.getText());
-        int numPartidas = Integer.parseInt(campoNumPartidas.getText());
+        int numDados;
+        int numCaras;
+        int numPartidas;
+        DatosPartida datosPartida;
 
-        DatosPartida datosPartida = new DatosPartida(numPartidas, numDados, numCaras);
+        try {
+            numDados = ValidadorVista.getEnteroPositivo(campoNumDados.getText());
+            numCaras = ValidadorVista.getEnteroPositivo(campoNumCaras.getText());
+            numPartidas = ValidadorVista.getEnteroPositivo(campoNumPartidas.getText());
 
-        juego.jugar(datosPartida);
+            datosPartida = new DatosPartida(numPartidas, numDados, numCaras);
+
+            juego.jugar(datosPartida);
+
+        } catch (NumberFormatException nfe) {
+            mensaje.setText(nfe.getMessage());
+        } catch (Exception _) {
+            mensaje.setText("Error inesperado");
+        }
 
         actualizarRankings();
-
     }
 
     @FXML
     public void salir() {
         Platform.exit();
-
     }
 
     @FXML
     public void cargarDatos() {
+        if (campoArchivo.getText().isBlank()) {
+            mensaje.setText("No has introducido ningun nombre");
+        } else {
+            try {
+                juego.cargarDatos(campoArchivo.getText());
+                actualizarRankings();
+                limpiarMensajeYArchivo();
+                desactivarBotonesJuego(false);
 
-        try {
-            juego.cargarDatos(campoArchivo.getText());
-            actualizarRankings();
+
+            } catch (FileNotFoundException e) {
+                mensaje.setText("No se encontro el archivo");
+            } catch (RuntimeException rte) {
+                mensaje.setText("Formato incorrecto");
+            } catch (Exception _) {
+                mensaje.setText("Error inesperado");
+            }
 
 
-        } catch (FileNotFoundException e) {
-            mensaje.setText("No se encontro el archivo");
-        } catch (RuntimeException rte) {
-            mensaje.setText("Formato incorrecto");
         }
+
 
 
     }
 
     @FXML
     public void guardarDatos() {
-        juego.guardarDatos(campoArchivo.getText());
+        if (campoArchivo.getText().isBlank()) {
+            mensaje.setText("No has introducido ningun nombre");
+        } else {
+
+            try {
+                juego.guardarDatos(campoArchivo.getText());
+                limpiarMensajeYArchivo();
+                mensaje.setText("Archivo guardado correctamente");
+            } catch (RuntimeException _) {
+                mensaje.setText("Formato incorrecto");
+            } catch (Exception _) {
+                mensaje.setText("Error inesperado");
+            }
+
+
+        }
+
+
+
 
     }
 
@@ -106,6 +147,20 @@ public class DiceWorldController {
     private void limpiarRankings() {
         areaRankingPartidas.clear();
         areaRankingPuntos.clear();
+    }
+
+    private void limpiarMensajeYArchivo() {
+        mensaje.setText("");
+        campoArchivo.clear();
+    }
+
+    private void desactivarBotonesJuego(boolean habilitados) {
+        campoNumDados.setDisable(habilitados);
+        campoNumCaras.setDisable(habilitados);
+        campoNumPartidas.setDisable(habilitados);
+
+        btnJugar.setDisable(habilitados);
+        btnGuardarDatos.setDisable(habilitados);
     }
 
 

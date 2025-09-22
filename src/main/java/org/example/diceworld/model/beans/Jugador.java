@@ -19,9 +19,9 @@ public class Jugador implements Serializable {
 
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+//    public String getNombre() {
+//        return nombre;
+//    }
 
     public Integer getPuntuacion(){
         return puntuacion;
@@ -69,9 +69,9 @@ public class Jugador implements Serializable {
         this.puntuacion += resultado;
     }
 
-    public void reiniciarPuntuacion() {
-        this.puntuacion = 0;
-        this.partidasGanadas = 0;
-        this.setValorUltimaTirada(0);
-    }
+//    public void reiniciarPuntuacion() {
+//        this.puntuacion = 0;
+//        this.partidasGanadas = 0;
+//        this.setValorUltimaTirada(0);
+//    }
 }

@@ -20,7 +20,7 @@
         <Label layoutX="189.0" layoutY="112.0" text="Número de Caras:" />
         <Label layoutX="386.0" layoutY="112.0" text="Número de Partidas:" />
         <Button layoutX="274.0" layoutY="46.0" mnemonicParsing="false" onAction="#cargarDatos" text="Cargar Datos" />
-        <Button layoutX="371.0" layoutY="46.0" mnemonicParsing="false" onAction="#guardarDatos" text="Guardar Datos" />
+        <Button fx:id="btnGuardarDatos" layoutX="371.0" layoutY="46.0" mnemonicParsing="false" onAction="#guardarDatos" text="Guardar Datos" />
         <Button fx:id="btnSalir" layoutX="505.0" layoutY="46.0" mnemonicParsing="false" onAction="#salir" text="SALIR" />
         <Label layoutX="134.0" layoutY="240.0" text="Ranking por Partidas" />
         <Label layoutX="370.0" layoutY="240.0" text="Ranking por Puntos totales" />
